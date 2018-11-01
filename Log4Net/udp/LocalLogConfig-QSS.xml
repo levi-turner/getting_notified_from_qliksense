@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- Config -->
+<configuration>
+<!-- Define the appender name, used below in the <logger> tag -->
+<appender name="UdpAppender" type="log4net.Appender.UdpAppender">
+    <param name="RemoteAddress" value="127.0.0.1" /> <!-- Remote address to send UDP responses -->
+    <param name="RemotePort" value="5001" /> <!-- Remote port to send UDP responses -->
+	<param name="threshold" value="ERROR"/> <!-- Filter the log based on the threshold level -->
+	<!-- <layout type="log4net.Layout.XmlLayout">
+        <param name="Prefix" value="" />
+    </layout> -->
+				 <!-- Define the format out of the output -->
+    <layout type="log4net.Layout.PatternLayout">
+		<param name="conversionPattern" value="Date: &#9; %date %newlineTask Name: %property{TaskName}%newlineAppName:%property{AppName}%newlineError Message: %message" />
+    </layout>
+</appender>
+    <!--Send mail on task failure-->
+    <logger name="System.Scheduler.Scheduler.Slave.Tasks.ReloadTask">
+	<!--Logger name identifies the component to monitor. This can be found by investigating the actual log file-->
+        <appender-ref ref="MailAppender" />
+		<!--appender-ref should match the name identifying the appender. More than one appender can be configured in the same configuration file-->
+    </logger>
+    <logger name="System.Scheduler.Scheduler.Master.Task.TaskSession">
+	<!--Logger name identifies the component to monitor. This can be found by investigating the actual log file-->
+        <appender-ref ref="MailAppender" />
+		<!--appender-ref should match the name identifying the appender. More than one appender can be configured in the same configuration file-->
+    </logger>
+</configuration>
