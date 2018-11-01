@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <configuration>
 	 <!-- Define the appender name, used below in the <logger> tag -->
-    <appender name="NodeUserLogger" type="log4net.Appender.UdpAppender">
+    <appender name="UdpUserLogger" type="log4net.Appender.UdpAppender">
         <param name="remoteAddress" value="localhost" /> <!-- Remote address to send UDP responses -->
         <param name="remotePort" value="8080" /> <!-- Remote port to send UDP responses -->
         <layout type="log4net.Layout.PatternLayout">
@@ -9,7 +9,7 @@
             <param name="conversionpattern" value="/activity/;%property{Command};%property{UserDirectory};%property{UserId}" />
         </layout>
     </appender>
-    <appender name="NodeSecurityLogger" type="log4net.Appender.UdpAppender">
+    <appender name="UdpSecurityLogger" type="log4net.Appender.UdpAppender">
         <param name="remoteAddress" value="localhost" /> <!-- Remote address to send UDP responses -->
         <param name="remotePort" value="8080" /> <!-- Remote port to send UDP responses -->
         <layout type="log4net.Layout.PatternLayout">
@@ -18,9 +18,9 @@
         </layout>
     </appender>
    <logger name="AuditActivity.Proxy"> <!-- logger as defined in the service logs -->
-      <appender-ref ref="NodeUserLogger" /> <!-- appender as defined in <appender> tag above -->
+      <appender-ref ref="UdpUserLogger" /> <!-- appender as defined in <appender> tag above -->
    </logger>
    <logger name="AuditSecurity.Proxy"> <!-- logger as defined in the service logs -->
-      <appender-ref ref="NodeSecurityLogger" /> <!-- appender as defined in <appender> tag above -->
+      <appender-ref ref="UdpSecurityLogger" /> <!-- appender as defined in <appender> tag above -->
    </logger>
 </configuration>
